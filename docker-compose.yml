@@ -1,0 +1,31 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "RabbitMQ-My-Cookies"
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "admin"
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./rabbitmq/definition/my_definition.json:/etc/rabbitmq/my_definition.json
+#      - ./rabbitmq/advanced.config:/etc/rabbitmq/advanced.config
+
+
+
+#version: '3.7'
+#services:
+#    redis:
+#      image: redis:alpine
+#      command: redis-server --requirepass changeme --port 6379
+#      container_name: redis_boot
+#      hostname: redis_boot
+#      labels:
+#        - "name=redis"
+#        - "mode=standalone"
+#      ports:
+#              - 6379:6379
